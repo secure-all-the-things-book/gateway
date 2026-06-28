@@ -14,10 +14,10 @@ import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFuncti
 import static org.springframework.web.servlet.function.RouterFunctions.route;
 
 @SpringBootApplication
-public class GatewayApplication {
+public class GatewayServletApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
+        SpringApplication.run(GatewayServletApplication.class, args);
     }
 
     @Bean
