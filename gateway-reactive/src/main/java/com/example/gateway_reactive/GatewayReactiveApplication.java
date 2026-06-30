@@ -10,5 +10,4 @@ public class GatewayReactiveApplication {
 		SpringApplication.run(GatewayReactiveApplication.class, args);
 	}
 
-
 }

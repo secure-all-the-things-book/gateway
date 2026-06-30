@@ -16,27 +16,24 @@ import static org.springframework.web.servlet.function.RouterFunctions.route;
 @SpringBootApplication
 public class GatewayServletApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(GatewayServletApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(GatewayServletApplication.class, args);
+	}
 
-    @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    RouterFunction<ServerResponse> api() {
-        return route()
-                .GET("/api/**", http())
-                .before(BeforeFilterFunctions.rewritePath("/api", "/"))
-                .filter(TokenRelayFilterFunctions.tokenRelay())
-                .before(BeforeFilterFunctions.uri("http://localhost:8081"))
-                .build();
-    }
+	@Bean
+	@Order(Ordered.HIGHEST_PRECEDENCE)
+	RouterFunction<ServerResponse> api() {
+		return route().GET("/api/**", http())
+			.before(BeforeFilterFunctions.rewritePath("/api", "/"))
+			.filter(TokenRelayFilterFunctions.tokenRelay())
+			.before(BeforeFilterFunctions.uri("http://localhost:8081"))
+			.build();
+	}
 
-    @Bean
-    @Order
-    RouterFunction<ServerResponse> ui() {
-        return route()
-                .GET("/**", http())
-                .before(BeforeFilterFunctions.uri("http://localhost:8020"))
-                .build();
-    }
+	@Bean
+	@Order
+	RouterFunction<ServerResponse> ui() {
+		return route().GET("/**", http()).before(BeforeFilterFunctions.uri("http://localhost:8020")).build();
+	}
+
 }
